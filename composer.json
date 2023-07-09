@@ -1,0 +1,18 @@
+{
+    "name": "admin/cbca-voeux",
+    "autoload": {
+        "psr-4": {
+            "v\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fabrice Kulhe",
+            "email": "115826337+lithosweb@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5",
+        "dompdf/dompdf": "^2.0"
+    }
+}

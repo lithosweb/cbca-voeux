@@ -98,14 +98,18 @@ class Router
     {
         return [
             "/" => "membres",
-            "/membre" => "membre",
             "/membres" => "membres",
-            "/membre/post" => "membre",
-            "/liberation" => "liberation",
-            "/liberation/post" => "liberation",
-            "/souscription" => "souscription",
-            "/souscription/post" => "souscription",
-            "/historique" => "historique",
+            "/membre/post" => "create-membre",
+            "/membre/post/update" => "update-membre",
+            "/membre/post/delete" => "delete-membre",
+            "/liberation" => "liberations",
+            "/liberation/post" => "create-liberation",
+            "/liberation/post/update" => "update-liberation",
+            "/liberation/post/delete" => "delete-liberation",
+            "/souscription" => "souscriptions",
+            "/souscription/post" => "create-souscription",
+            "/souscription/post/update" => "update-souscription",
+            "/souscription/post/delete" => "delete-souscription"
         ];
     }
 }

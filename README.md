@@ -1,6 +1,9 @@
 # Composer installed packages
 .env
 .dompdf
+.bootstrap css 
+.bootstrap js 
+.bootstrap icons
 
 # Code structure
 .MVC

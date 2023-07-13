@@ -1,4 +1,4 @@
 vendor
 README.md
-composer.json
-composer.lock
+.vscode
+.vscode/extensions.json

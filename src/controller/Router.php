@@ -1,115 +1,49 @@
 <?php
+
 namespace v\controller;
 
+use v\controller\Routes;
 use v\helpers\Helpers;
-use v\model\View;
+use v\model\Model;
 
 class Router
 {
-    public Validation $va;
+    public Model $mo;
 
     public function __construct()
     {
-        $this->va = new Validation;
+        $this->mo = new Model;
     }
 
-    public function meth($meth, $uri)
+    public function manageInfo($meth, $uri)
     {
-        $route = (array) Router::routes();
-        if (!array_key_exists($uri, $route)) {
-            header("Location: /");
-            exit;
-        }
-        foreach ($route as $key => $value) {
-            if (str_contains($key, "/post")) {
-                $postKeys[] = $key;
-                $postValues[] = $value;
-            } else {
-                $getRoutes[] = [$key => $value];
-                $getKeys[] = $key;
-                $getValues[] = $value;
-            }
-        }
-        $postRoutes = array_combine($postKeys, $postValues);
-        $getRoutes = array_combine($getKeys, $getValues);
+        $meth = parse_url(Helpers::sanitizeMeth($meth))["path"];
+        $uri = Helpers::sanitizeUri($uri);
 
         switch ($meth) {
-            case 'GET':
-                $this->get($uri, $getRoutes);
+            case "GET":
+                $getRoutes = Routes::getRoutes();
+                if (! array_key_exists($uri, $getRoutes)) {
+                    header("Location: /membres");
+                    exit;
+                }
+                $this->mo->getRedirects($uri);
                 break;
 
-            case 'POST':
-                $this->post($uri, $postRoutes);
+            case "POST":
+                $postRoutes = Routes::postRoutes();
+                if (! array_key_exists($uri, $postRoutes)) {
+                    header("Location: /membres");
+                    exit;
+                }
+                $this->mo->postRedirects($uri);
                 break;
 
             default:
-                http_response_code(404);
-                echo "Wrong Gate";
-                echo "<h1><a href='/'>Go home</a></h1>";
-                exit;
-                break;
-        }
-    }
-
-    public function get($uri, $routes)
-    {
-        View::renderView($routes[$uri], "main");
-    }
-
-    public function post($uri, $routes)
-    {
-        $data = filter_var_array($_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $code = Helpers::randStr(30);
-        switch ($uri) {
-
-            case '/membre/post':
-                $this->va->insertData($data, $code);
+                http_response_code(422);
+                header("Allow: GET, POST");
                 header("Location: /membres");
                 break;
-
-            case '/souscription/post':
-                $this->va->insertSouscription($data, $code);
-                header("Location: /souscription");
-                break;
-
-            case '/liberation/post':
-                $this->va->insertLiberation($data, $code);
-                header("Location: /liberation");
-                break;
-
-            default:
-
-                break;
         }
-    }
-    public function alternative()
-    {
-    }
-
-    public function getRoute($meth, $uri)
-    {
-        $meth = filter_var($meth, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $uri = filter_var($uri, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        $this->meth($meth, $uri);
-    }
-
-    public static function routes()
-    {
-        return [
-            "/" => "membres",
-            "/membres" => "membres",
-            "/membre/post" => "create-membre",
-            "/membre/post/update" => "update-membre",
-            "/membre/post/delete" => "delete-membre",
-            "/liberation" => "liberations",
-            "/liberation/post" => "create-liberation",
-            "/liberation/post/update" => "update-liberation",
-            "/liberation/post/delete" => "delete-liberation",
-            "/souscription" => "souscriptions",
-            "/souscription/post" => "create-souscription",
-            "/souscription/post/update" => "update-souscription",
-            "/souscription/post/delete" => "delete-souscription"
-        ];
-    }
-}
+    }  
+ }

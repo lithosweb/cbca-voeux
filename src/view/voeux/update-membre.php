@@ -31,18 +31,17 @@ if (empty($da)) {
     <input type="text" class="form-control"  name="pre" placeholder="Prenom" value="<?= $da["m_prenom"] ?>">
 
     <label class="form-label">Sexe</label>
-    <input type="text" id="" value="<?= $da["m_sexe"] ?>" disabled>
-    <select class="form-control" name="sexe">
-  <option value="" disabled>Sexe</option>
+    <input type="text" id="" value="<?= "Sexe: ".$da["m_sexe"] ?>" disabled class="form-control">
+    <select class="form-control" name="sexe" aria-placeholder="Sexe">
+  <option value="S" disabled>Sexe</option>
   <option value="M">Masculin</option>
   <option value="F">Feminin</option>
  </select>
 
-
     <label class="form-label">Telephone</label>
     <input type="text" class="form-control" placeholder="Telephone" name="tel" value="<?= $da["m_telephone"] ?>">
 
-
+<br>
   <button type="submit" class="btn btn-primary">Submit</button>
 </div>
 </form>

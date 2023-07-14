@@ -9,7 +9,6 @@ $data = $_GET;
 Validation::validUpdate($data);
 
 $db = new Database;
-// $da = $db->selectOneResult("subscriptions", $data["_"]);
 $da = $db->selectJoinMembersRemotly("members", "subscriptions", $data["_"]);
 if (empty($da)) {
   header("Location: /subscriptions");
@@ -32,7 +31,7 @@ if (empty($da)) {
 
     <label  class="form-label">Chapelle</label>
     <input type="text" class="form-control" placeholder="Chapelle" value="<?= $da["s_chapelle"] ?>" disabled><br>
-    <select name="chapelle" aria-placeholder="chapelle">
+    <select name="chapelle" aria-placeholder="chapelle" class="form-control">
   <option value="kasika">Kasika</option>
   <option value="mashariki">Mashariki</option>
   <option value="central">Central</option>
@@ -41,7 +40,7 @@ if (empty($da)) {
 
     <label class="form-label">Categorie</label>
     <input type="text" class="form-control" placeholder="Chapelle" value="<?= $da["s_categorie"] ?>" disabled><br>
-    <select name="categorie" aria-placeholder="Categorie"> 
+    <select name="categorie" aria-placeholder="Categorie" class="form-control"> 
       <option value="neophyte">Neophytes</option>
       <option value="commercant">Commercants</option>
       <option value="minenfant">Min.Enfant</option>
@@ -50,7 +49,7 @@ if (empty($da)) {
  </select><br>
 
  <label for="montant">Montant</label>
- <input type="text" class="form-control" placeholder="Chapelle" value="<?= $da["s_chapelle"] ?>" disabled> <br>
+ <input type="text" class="form-control" placeholder="Chapelle" value="<?= $da["s_montant"] ?>" disabled> <br>
  <input type="number" name="montant" class="form-control" id="">CDF <br>
 
  <button type="submit" class="btn btn-primary">Submit</button>

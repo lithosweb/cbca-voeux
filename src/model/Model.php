@@ -2,14 +2,16 @@
 
 namespace v\model;
 
-use v\model\Validation;
 use v\helpers\Helpers;
+use v\model\Validation;
 
 class Model
 {
     public Validation $va;
+    public Printing $pr;
     public function __construct()
     {
+        $this->pr = new Printing;
         $this->va = new Validation;
     }
 
@@ -52,6 +54,13 @@ class Model
 
             case "/souscription/update":
                 View::renderView("update-souscription");
+                break;
+                break;
+
+            case "/print":
+                $this->pr->printingResult("membre");
+                // View::renderView("update-souscription");
+                break;
                 break;
 
             default:

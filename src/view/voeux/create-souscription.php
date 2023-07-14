@@ -16,36 +16,38 @@ $d = $da->selectOneResult("members", $data["_"]);
 
  <input type="hidden" name="_" value="<?= $data["_"] ?>">
     <label class="form-label">Nom</label>
-    <input type="text" class="form-control" value="<?= $d["m_nom"] ?>" disabled> <br>
+    <input type="text" class="form-control" value="<?= $d["m_nom"] ?>" disabled> 
 
 
     <label class="form-label">Postnom</label>
-    <input type="text" class="form-control" value="<?= $d["m_postnom"] ?>" disabled> <br>
+    <input type="text" class="form-control" value="<?= $d["m_postnom"] ?>" disabled> 
 
 
     <label class="form-label">Prenom</label>
-    <input type="text" class="form-control" value="<?= $d["m_prenom"] ?>" disabled> <br>
+    <input type="text" class="form-control" value="<?= $d["m_prenom"] ?>" disabled> 
 
 
     <label  class="form-label">Chapelle</label>
-    <select name="chapelle" aria-placeholder="chapelle"> 
+    <select name="chapelle" aria-placeholder="chapelle" class="form-control"> 
+  <option value="chapelle" disabled>Chapelle</option>
   <option value="kasika">Kasika</option>
   <option value="mashariki">Mashariki</option>
   <option value="central">Central</option>
- </select><br>
+ </select>
 
 
     <label class="form-label">Categorie</label>
-    <select name="categorie" aria-placeholder="Categorie"> 
+    <select name="categorie" aria-placeholder="Categorie" class="form-control"> 
+      <option value="categorie" disabled>Categorie</option>
       <option value="neophyte">Neophytes</option>
       <option value="commercant">Commercants</option>
       <option value="minenfant">Min.Enfant</option>
       <option value="fundimikono">Fundi.Mikono</option>
       <option value="mjc">MJC</option>
- </select><br>
+ </select>
 
     <label class="form-label">Montant</label>
-    <input type="number" name="montant" class="form-control" maxlength="20">CDF <br>
+    <input type="number" name="montant" class="form-control" maxlength="20" placeholder="Montant"> <br>
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </div>

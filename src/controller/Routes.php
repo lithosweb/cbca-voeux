@@ -17,6 +17,7 @@ class Routes
             "/souscriptions" => "souscriptions",
             "/souscription/creer" => "create-souscription",
             "/souscription/update" => "update-souscription",
+            "/print" => "/membre",
         ];
     }
 

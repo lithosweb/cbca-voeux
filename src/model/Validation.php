@@ -42,12 +42,8 @@ class Validation
 
     public function insertLiberation($data)
     {
-        $row = $this->db->insertLib($data, $this->code);
-        if ($row == 1) {
-            echo "Something was inserted";
-            header("Location: /souscriptions");
-            exit;
-        }
+        $this->db->insertLib($data, $this->code);
+        $this->db->updateSubAtLibInsert($data);
         header("Location: /souscriptions");
         exit;
     }
@@ -95,7 +91,7 @@ class Validation
             exit;
         }
 
-        $row = $this->db->updateSubscriber($data);
+        $this->db->updateSubscriber($data);
         header("Location: /souscriptions");
         exit;
     }
@@ -112,9 +108,11 @@ class Validation
         }
 
         $row = $this->db->updateOneRel($data);
+        $this->db->updateSubAtLibUp($data);
         header("Location: /liberations");
         exit;
     }
+
     // ALL DELETE METHODS
 
     public function deleteOneMember($table, $code)
@@ -124,12 +122,10 @@ class Validation
             header("Location: /membres");
             exit;
         }
-        $codes = $code["_"];
-        $check = $this->db->selectOneResult($table, $codes);
-        if (!empty($check)) {
-            header("Location: /membres");
-        }
-        $row = $this->db->deleteOne($table, $codes);
+        $codes = $code["_"];      
+        $this->db->deleteCustomOnes("releases", "r_code_membre", $codes);
+        $this->db->deleteCustomOnes("subscriptions", "s_code_membre", $code);
+        $this->db->deleteOne($table, $codes);
         header("Location: /membres");
         exit;
     }
@@ -141,12 +137,8 @@ class Validation
             exit;
         }
         $codes = $code["_"];
-        $check = $this->db->selectOneResult($table, $codes);
-        if (!empty($check)) {
-            header("Location: /souscriptions");
-        }
-
-        $row = $this->db->deleteOne($table, $codes);
+        $this->db->deleteCustomOnes("releases", "r_code_souscription", $codes);
+        $this->db->deleteOne($table, $codes);
         header("Location: /souscriptions");
         exit;
     }
@@ -158,11 +150,8 @@ class Validation
             exit;
         }
         $codes = $code["_"];
-        $check = $this->db->selectOneResult($table, $codes);
-        if (!empty($check)) {
-            header("Location: /liberations");
-        }
-        $row = $this->db->deleteOne($table, $codes);
+        $this->db->updateSubAtLibDel($codes);
+        $this->db->deleteOne($table, $codes);
         header("Location: /liberations");
         exit;
     }

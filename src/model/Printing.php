@@ -8,47 +8,119 @@ use Dompdf\Options;
 class Printing
 {
 
-    public Dompdf $dompdf;
-    public Options $options;
+    // public Dompdf $dompdf;
+    // public Options $options;
 
     public function __construct()
     {
-        $this->options = new Options();
-        $this->dompdf = new Dompdf($this->options);
     }
 
-    public function printingResult($html)
+
+
+
+    public function resolve($data)
     {
-        /*       $options = $this->options->setChroot(__DIR__ . "/../view/media/photos");
-        $options = $this->options->setIsRemoteEnabled(true); */
-        $html = View::getHtml($html, "printing");
-        $printThat = View::renderViewForPrint($html);
-        $this->dompdf->loadHtml($printThat, "UTF-8");
-        $this->dompdf->setPaper("A4", "landscape");
-        $this->dompdf->render();
-        $this->dompdf->stream("voeux-" . date("d-F-Y"), ["Attachment" => 0]);
+        if (empty($data)) {
+            header("Location: print");
+            exit;
+        }
+        switch ($data["table"]) {
+            case 'souscriptions':
+                $this->printSouscriptions($data);
+                break;
+
+            case 'membres':
+                $this->printMembres();
+                break;
+
+            case 'liberations':
+                $this->printLiberations();
+                break;
+
+            case 'custom':
+                header("Location: /print/custom");
+                break;
+
+            default:
+                header("Location: /print");
+                break;
+        }
+    }
+
+    public function customPrint($data)
+    {
+        $this->printingResult("<p class='text-sm-center mb-3'>" . $data["text"] . "</p>", false);
+    }
+
+    public function printLiberations()
+    {
+        $this->printingResult("liberations");
+    }
+    public function printMembres()
+    {
+        $this->printingResult("membres");
+    }
+
+    public function printSouscriptions($data)
+    {
+        switch ($data["categorie"]) {
+            case 'neophyte':
+                # code...
+                break;
+
+            case 'commercant':
+                # code...
+                break;
+
+            case 'min.enfant':
+                # code...
+                break;
+
+            case 'fundi.mikono':
+                # code...
+                break;
+
+            case 'debrouillard':
+                # code...
+                break;
+
+            case 'fonctionnaire':
+                # code...
+                break;
+
+            case 'm.j.c':
+                # code...
+                break;
+
+            case 'hors.categorie':
+                # code...
+                break;
+
+            case 'all':
+                $this->printingResult("souscriptions");
+                break;
+
+            default:
+                header("Location: /print");
+                break;
+        }
+    }
+
+    public function printingResult($html, $bool = true)
+    {
+        $options = new Options();
+        $options = $options->setChroot(__DIR__ . "/../view/layout/icon/logo.png");
+        // $options = $options->setIsRemoteEnabled(true); for remote ressource
+
+        $dompdf = new Dompdf($options);
+        if ($bool == true) {
+            $htmll = View::renderViewForPrint($html);
+        } else {
+            $htmll = View::renderViewForCustomPrint($html);
+        }
+        $dompdf->loadHtml($htmll, "UTF-8");
+        $dompdf->setPaper("A4", "landscape");
+        $dompdf->render();
+        $dompdf->stream( "voeux-du-" . date("d-F-Y") . ".pdf", ["Attachment" => 0]);
     }
 }
-
-
-// // Options for getting photos viewed
-// $options = new Options;
-// $options = $options->setChroot(__DIR__);
-// $options = $options->setIsRemoteEnabled(true);
-
-// //get HTML outside
-// $html = "<h1 style='color: blue'>Hello DomPdf Parser</h1>";
-// //$html .= "<img src='1682638344057.png'>";
-
-// // instantiate and use the dompdf class
-// $dompdf = new Dompdf($options);
-// $dompdf->loadHtml($html);
-
-// // (Optional) Setup the paper size and orientation
-// //$dompdf->setPaper('A4', 'portrait');
-
-// // Render the HTML as PDF
-// $dompdf->render();
-
-// // Output the generated PDF to Browser
-// $dompdf->stream("example.pdf", ["Attachment" => 0]);

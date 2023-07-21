@@ -1,30 +1,30 @@
-<h1>Creer un membre</h1>
+<h3 class="text-sm-center">Creer membre</h3>
 
 <form class="container" action="/membre/creer" method="post">
 
-  <div class="shadow-lg p-3 mb-5 bg-body rounded">
+  <div class="shadow-lg p-2 mx-5 bg-body rounded">
     <label class="form-label">Nom</label>
-    <input type="text" class="form-control"  name="nom" maxlength="50" placeholder="Nom">
+    <input type="text" class="form-control" name="nom" maxlength="30" placeholder="Nom">
 
 
     <label class="form-label">Postnom</label>
-    <input type="text" class="form-control"  name="post" maxlength="50" placeholder="Post-nom">
+    <input type="text" class="form-control" name="post" maxlength="30" placeholder="Post-nom">
 
 
     <label class="form-label">Prenom</label>
-    <input type="text" class="form-control"  name="pre" maxlength="50" placeholder="Prenom">
+    <input type="text" class="form-control" name="pre" maxlength="30" placeholder="Prenom">
 
 
     <label class="form-label">Sexe</label>
     <select class="form-control" name="sexe" aria-placeholder="Sexe">
-  <option value="M">Masculin</option>
-  <option value="F">Feminin</option>
- </select>
+      <option value="M">Masculin</option>
+      <option value="F">Feminin</option>
+    </select>
 
     <label class="form-label">Telephone</label>
     <input type="tel" class="form-control" placeholder="Telephone" name="tel" maxlength="20">
-<br>
+    <br>
 
-  <button type="submit" class="btn btn btn-primary">Submit</button>
-</div>
+    <button type="submit" class="btn btn btn-primary">Submit</button>
+  </div>
 </form>

@@ -7,14 +7,17 @@ use v\model\Database;
 $dass = $_GET;
 $dat = Helpers::sanitizeData($_GET);
 $db = new Database;
-
-if (empty($dat)) {
+$taux = (int) Helpers::getTaux();
+if ($taux == 0) {
+$taux = 2500;
+}
+if (empty($dat)) { 
   $data = $db->selectJoinMembers("members", "releases", "members.m_nom", "");
 } else {
   $data = $db->selectJoinMembers("members", "releases", "members.m_nom", $dat["_"]);
 }
 ?>
-
+<h3 class="text-sm-center">Liberations</h3>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -22,9 +25,10 @@ if (empty($dat)) {
       <th scope="col">Nom</th>
       <th scope="col">Postnom</th>
       <th scope="col">Prenom</th>
-      <th scope="col">Montant</th>
+      <th scope="col">Montant (T)</th>
+      <th scope="col">(USD ~ CDF)</th>
       <th scope="col">Date</th>
-      <th>Actions</th>
+      <th scope="col">Actions (*)</th>
     </tr>
   </thead>
   <?php if (! empty($data)): ?>
@@ -32,10 +36,11 @@ if (empty($dat)) {
     <?php foreach ($data as $key => $value) : ?>
       <tr>
         <th scope="row"><?= 1 ?></th>
-        <td><?= $value["m_nom"] ?></td>
-        <td><?= $value["m_postnom"] ?></td>
-        <td><?= $value["m_prenom"] ?></td>
-        <td><?= $value["r_montant"]." CDF" ?></td>
+        <td><?= ucfirst($value["m_nom"]) ?></td>
+        <td><?= ucfirst($value["m_postnom"]) ?></td>
+        <td><?= ucfirst($value["m_prenom"]) ?></td>
+        <td><?= number_format($value["r_montant"], 0, '.', ' ') . " CDF <br> (" .number_format(($value["r_montant"] / $taux), 2, ',', ' ') . " USD)" ?></td>
+        <td><?= $taux . " CDF" ?></td>
         <td><?= $value["r_date"] ?></td>
         <td>
           <!-- cool -->

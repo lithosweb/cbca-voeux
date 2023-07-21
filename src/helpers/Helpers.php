@@ -30,4 +30,43 @@ class Helpers
   {
     return filter_var_array($data, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
   }
+
+  public static function updateTaux($data)
+  {
+    if (empty($data)) {
+      header("Location: /taux");
+      exit;
+    }
+    if (array_key_exists("taux", $data)) {
+      $taux = abs((int) $data["taux"]) ;
+    } else {
+      $taux = 2500;
+    }
+    if ($taux == 0) {
+      $taux = 2500;
+    }
+    $if = file_exists(__DIR__ . "/../files/taux.json");
+    if ($if) {
+      file_put_contents(__DIR__ . "/../files/taux.json", json_encode(["taux" => $taux]));
+    } else {
+      mkdir(__DIR__ . "/../files/taux.json");
+      file_put_contents(__DIR__ . "/../files/taux.json", json_encode(["taux" => $taux]));
+    }
+    header("Location: taux");
+    exit;
+  }
+
+  public static function getTaux()
+  {
+    $data = json_decode(file_get_contents(__DIR__ . "/../files/taux.json"), true);
+    if (empty($data)) {
+      $taux = 2500;
+      mkdir(__DIR__ . "/../files/taux.json");
+      file_put_contents(__DIR__ . '/../files.json', json_encode(['name' => $taux]));
+      return $taux;
+    } else {
+      $taux = (int) $data["taux"];
+      return $taux;
+    }
+  }
 }

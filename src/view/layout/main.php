@@ -2,10 +2,9 @@
 $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-dark text-white">
 
 <head>
-
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,82 +13,50 @@ $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> -->
 
-
-  <?php
-  $file = scandir(__DIR__ . "/../../../vendor/twbs/bootstrap/dist/css");
-  // echo "HI";
-  foreach ($file as $key => $value) :
-    if (!is_dir($value)) : 
-    ?>
-      <link href="
-      <?= __DIR__ . "/../../../vendor/twbs/bootstrap/dist/css/{$value}" 
-      ?>
-      " rel="stylesheet">
-  <?php
-   endif;
-  endforeach; 
-  ?>
-
-  <?php
-  $files = scandir(__DIR__ . "/js");
-  
-  foreach ($files as $keys => $values) {
-    if (!is_dir($values) && ! str_contains( $value, ".map")) { ?>
-      <script href="<?= __DIR__ . "/js/{$values}" ?>"></script>
-  <?php
-}
-  } ?>
-  <link rel="stylesheet" href="main.css">
-  <title>Document</title>
+  <title>CBCA-Kasika</title>
 </head>
 
 <body class="p-3 mb-2 bg-dark text-white">
   <!-- STYLING DOCUMENT -->
-  <style>
-<?= file_get_contents(__DIR__."/css/main.css") ?>
+  <style type="text/css">
+    <?= file_get_contents(__DIR__ . "/css/main.css") ?>
   </style>
-    <!-- STYLING DOCUMENT -->
+  <!-- STYLING DOCUMENT -->
 
-  <script>    
-<?php
-  $files = scandir(__DIR__ . "/js");
-  
-  foreach ($files as $keys => $values) :
-    if (!is_dir($values) && ! str_contains( $value, ".map")) :
-      echo  file_get_contents(__DIR__ . "/js/{$values}");
-    endif;
-  endforeach; ?>
-  </script>
 
-  <div class="container text-center">
+  <div class="pe-3 me-3 container text-center">
     <h1>
-      CBCA-Voeux
+      Secretariat - CBCA - Kasika
     </h1>
   </div>
 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary mb-0">
 
     <div class="container-fluid">
-
+      <div class="nav-item">
+        <a href="/connexion" class="btn btn-sm btn-outline-danger">Deconnexion</a>
+      </div>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-          <li class="nav-item">
-            <a class="nav-link active" href="/membre/creer">Creer un Membre</a>
+          <li class='nav-item mx-md-2 me-3'>
+            <a class="btn btn-outline-success" href="/membre/creer">Creer membre</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/membres">Membres</a>
+          <li class='nav-item mx-md-2'>
+            <a class="btn btn-outline-success" href="/membres">Membres</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/souscriptions">Souscriptions</a>
+          <li class='nav-item mx-md-2'>
+            <a class="btn btn-outline-success" href="/souscriptions">Souscriptions</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/liberations">Liberations</a>
+          <li class='nav-item mx-md-2'>
+            <a class="btn btn-outline-success" href="/liberations">Liberations</a>
           </li>
-         <!--  <li class="nav-item">
-            <a class="nav-link" href="/print">Print</a>
-          </li> -->
+          <li class='nav-item mx-md-2'>
+            <a class="btn btn-outline-success" href="/taux">Taux</a>
+          </li>
+            <li class='nav-item mx-md-2'>
+            <a class="btn btn-outline-success" href="/print">Imprimer</a>
+          </li>
 
         </ul>
 
@@ -109,7 +76,7 @@ $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
                                                         break;
 
                                                       default:
-                                                        echo "Something went wrong";
+                                                        echo "<script>alert('Something occurs');</script>";
                                                         echo "<h3><a href='/membres'>Go Home</a></h3>";
                                                         break;
                                                     } ?>" method="get">
@@ -124,11 +91,11 @@ $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
 
   <br>
 
-  <div class="text-bg-secondary p-1">
+  <div class="text-bg-dark mx-3">
     {{content}}
   </div>
 
-
+  <script src="js/main.js"></script>
 </body>
 
 </html>

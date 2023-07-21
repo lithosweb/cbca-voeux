@@ -2,17 +2,30 @@
 
 namespace v\model;
 
+use v\auth\Auth;
 use v\helpers\Helpers;
-use v\model\Validation;
+use v\model\validation\Delete;
+use v\model\validation\Helpers as ValidationHelpers;
+use v\model\validation\Insert;
+use v\model\validation\Update;
 
 class Model
 {
-    public Validation $va;
+    public Insert $ins;
+    public ValidationHelpers $vh;
+    public Update $upd;
+    public Delete $del;
     public Printing $pr;
+    public Auth $au;
+
     public function __construct()
     {
         $this->pr = new Printing;
-        $this->va = new Validation;
+        $this->ins = new Insert;
+        $this->vh = new ValidationHelpers;
+        $this->upd = new Update;
+        $this->del = new Delete;
+        $this->au = new Auth;
     }
 
     public function getRedirects($uri)
@@ -20,53 +33,91 @@ class Model
         $data = Helpers::sanitizeData($_GET);
         switch ($uri) {
 
+            // Connexion
+            case "/connexion":
+                Auth::getBlankSession();
+                View::renderView("connexion", "out-sphere");
+                break;
+
+                // Render listings
+
             case "/membres":
-                View::renderView();
+                $this->au->verifyAuth();
+                View::renderView("membres", "main");
                 break;
 
             case "/liberations":
-                View::renderView("liberations");
+                $this->au->verifyAuth();
+                View::renderView("liberations", "main");
                 break;
 
             case "/souscriptions":
-                View::renderView("souscriptions");
+                $this->au->verifyAuth();
+                View::renderView("souscriptions", "main");
                 break;
 
+                // Create Pages
+
             case "/membre/creer":
-                View::renderView("create-membre");
+                $this->au->verifyAuth();
+                View::renderView("create-membre", "main");
                 break;
 
             case "/liberation/creer":
-                View::renderView("create-liberation");
+                $this->au->verifyAuth();
+                View::renderView("create-liberation", "main");
                 break;
 
             case "/souscription/creer":
-                View::renderView("create-souscription");
+                $this->au->verifyAuth();
+                View::renderView("create-souscription", "main");
                 break;
 
+                // Update pages
+
             case "/membre/update":
-                View::renderView("update-membre");
+                $this->au->verifyAuth();
+                View::renderView("update-membre", "main");
                 break;
 
             case "/liberation/update":
-                View::renderView("update-liberation");
+                $this->au->verifyAuth();
+                View::renderView("update-liberation", "main");
                 break;
 
             case "/souscription/update":
-                View::renderView("update-souscription");
-                break;
+                $this->au->verifyAuth();
+                View::renderView("update-souscription", "main");
                 break;
 
+// Taux
+            case "/taux":
+                $this->au->verifyAuth();
+                View::renderView("taux");
+                break;
+
+                // Error
+            case "/error":
+                $this->au->verifyAuth();
+                View::renderView(html: "404", htmlFolder: "error");
+                break;
+
+                // Printing pages
             case "/print":
-                $this->pr->printingResult("membre");
-                // View::renderView("update-souscription");
-                break;
+                $this->au->verifyAuth();
+                View::renderView("print");
                 break;
 
+            case "/print/custom":
+                $this->au->verifyAuth();
+                View::renderView("custom");
+                break;
+
+                // Default
             default:
                 http_response_code(422);
                 header("Allow: GET");
-                header("Location: /membres");
+                header("Location: /connexion");
                 break;
         }
     }
@@ -76,46 +127,81 @@ class Model
         $data = Helpers::sanitizeData($_POST);
         switch ($uri) {
 
+            // Connexion Resolution
+            case "/connexion":
+                $this->vh->verifyAdmin($data);
+                break;
+
+                // Creation Resolution
             case "/membre/creer":
-                $this->va->insertMember($data);
+                $this->au->verifyAuth();
+                $this->ins->insertMember($data);
                 break;
 
             case "/liberation/creer":
-                $this->va->insertLiberation($data);
+                $this->au->verifyAuth();
+                $this->ins->insertLiberation($data);
                 break;
 
             case "/souscription/creer":
-                $this->va->insertSouscription($data);
+                $this->au->verifyAuth();
+                $this->ins->insertSouscription($data);
                 break;
 
+                // Update Resolution
             case "/membre/update":
-                $this->va->updateMember($data);
+                $this->au->verifyAuth();
+                $this->upd->updateMember($data);
                 break;
 
             case "/liberation/update":
-                $this->va->updateRelease($data);
+                $this->au->verifyAuth();
+                $this->upd->updateRelease($data);
                 break;
 
             case "/souscription/update":
-                $this->va->updateSubscriber($data);
+                $this->au->verifyAuth();
+                $this->upd->updateSubscriber($data);
                 break;
 
+                // Deletion Resolution
             case "/membre/delete":
-                $this->va->deleteOneMember("members", $data);
+                $this->au->verifyAuth();
+                $this->del->deleteOneMember("members", $data);
                 break;
 
             case "/liberation/delete":
-                $this->va->deleteOneLiberation("releases", $data);
+                $this->au->verifyAuth();
+                $this->del->deleteOneLiberation("releases", $data);
                 break;
 
             case "/souscription/delete":
-                $this->va->deleteOneSubscriber("subscriptions", $data);
+                $this->au->verifyAuth();
+                $this->del->deleteOneSubscriber("subscriptions", $data);
                 break;
 
+                // Taux update resolution
+            case "/taux":
+                $this->au->verifyAuth();
+                Helpers::updateTaux($data);
+                break;
+                
+                // Printing Resolution
+            case "/print":
+                $this->au->verifyAuth();
+                $this->pr->resolve($data);
+                break;
+
+            case "/print/custom":
+                $this->au->verifyAuth();
+                $this->pr->customPrint($data);
+                break;
+
+                // Default
             default:
                 http_response_code(422);
                 header("Allow: POST");
-                header("Location: /membres");
+                header("Location: /connexion");
                 break;
         }
     }

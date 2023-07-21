@@ -1,7 +1,9 @@
 
 --tomorrow sun-16-july-2023--
 
-. login page need to be implemented to secure the software
-. printing need to be implemented to get copy of data
+. printing need to be implemented
+
+|| gilbert || gilbert123
+|| admin   ||  admin123
 
 -- back soon --

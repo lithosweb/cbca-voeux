@@ -1,34 +1,38 @@
 <?php
 require_once __DIR__."/../../../vendor/autoload.php";
 
+use v\helpers\Helpers;
 use v\model\Validation;
 use v\model\Database;
+use v\model\database\Select;
+use v\model\validation\Helpers as ValidationHelpers;
 
 $data = $_GET;
-Validation::validUpdate($data);
+ValidationHelpers::validUpdate($data); 
 $da = new Database;
 $d = $da->selectOneResult("members", $data["_"]);
 ?>
-
-<h1>Creer une Liberation</h1>
+<h3 class="text-sm-center">Creer liberation</h3>
 
 <form class="container" action="/liberation/creer" method="post">
 
-  <div class="shadow-lg p-3 mb-5 bg-body rounded">
+  <div class="shadow-lg p-2 mx-5 bg-body rounded">
 
  <input type="hidden" name="_" value="<?= $data["_"] ?>">
  <input type="hidden" name="__" value="<?= $data["__"] ?>">
+
+ <div class="d-flex">
     <label class="form-label">Nom</label>
-    <input type="text" class="form-control" value="<?= $d["m_nom"] ?>" disabled> <br>
+    <input type="text" class="form-control" value="<?= ucfirst($d["m_nom"]) ?>" disabled readonly> <br>
 
 
     <label class="form-label">Postnom</label>
-    <input type="text" class="form-control" value="<?= $d["m_postnom"] ?>" disabled> <br>
+    <input type="text" class="form-control" value="<?= ucfirst($d["m_postnom"]) ?>" disabled readonly> <br>
 
 
     <label class="form-label">Prenom</label>
-    <input type="text" class="form-control" value="<?= $d["m_prenom"] ?>" disabled> <br>
-
+    <input type="text" class="form-control" value="<?= ucfirst($d["m_prenom"]) ?>" disabled readonly> <br>
+</div>
     <label class="form-label" for="montant">Montant</label>
     <input type="number" name="montant" class="form-control" maxlength="20" placeholder="Montant"> <br>
 

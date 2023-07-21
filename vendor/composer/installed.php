@@ -3,7 +3,7 @@
         'name' => 'admin/cbca-voeux',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '4a727bfe3ca31605e84c70a0c23b5374bc3c1a5b',
+        'reference' => '2eadcaab38fd90732092d7b1aa8a46798134f0ec',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'admin/cbca-voeux' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '4a727bfe3ca31605e84c70a0c23b5374bc3c1a5b',
+            'reference' => '2eadcaab38fd90732092d7b1aa8a46798134f0ec',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

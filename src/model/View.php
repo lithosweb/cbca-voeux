@@ -27,16 +27,16 @@ class View
         echo str_replace("{{content}}", $htm, $render);
     }
 
-    public static function renderViewForPrint($html = "membre", $layout = "_print")
+    public static function renderViewForPrint($html = "membre", $categorie = "membres", $layout = "_print")
     {
         $htm = View::getHtml($html, "printing");
         $render = View::getLayout($layout);
-        return str_replace("{{content}}", $htm, $render);
+        return str_replace(["{{content}}", "{{categorie}}"], [$htm, $categorie], $render);
     }
 
-    public static function renderViewForCustomPrint(string $html = "membre", string $layout = "_print")
+    public static function renderViewForCustomPrint(string $html = "membre", $categorie = "membres", string $layout = "_print")
     {
         $render = View::getLayout($layout);
-        return str_replace("{{content}}", $html, $render);
+        return str_replace(["{{content}}", "{{categorie}}"], [$html, $categorie], $render);
     }
 }

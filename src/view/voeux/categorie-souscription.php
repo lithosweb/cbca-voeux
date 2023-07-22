@@ -13,9 +13,9 @@ if ($taux == 0) {
 }
 
 if (empty($dat)) {
-  $data = $db->selectJoinMembers("members", "subscriptions", "members.m_nom", "");
+  $data = $db->selectJoinMembers("members", "subscriptions", "subscriptions.s_categorie", "");
 } else {
-  $data = $db->selectJoinMembers("members", "subscriptions", "members.m_nom", $dat["_"]);
+  $data = $db->selectJoinMembers("members", "subscriptions", "subscriptions.s_categorie", $dat["_"]);
 }
 
 $sous = 0;
@@ -28,7 +28,7 @@ $eca += (int) $v["s_ecart"];
 }
 
 if (! empty($data)) {
-$data[count($data)+1] = [
+ $data[count($data)+1] = [
     "m_code" => "",
     "m_nom" => "TOTAUX",
     "m_postnom" => "GENERAUX",
@@ -41,11 +41,12 @@ $data[count($data)+1] = [
     "s_ecart" => $eca,
     "s_taux_real" => "",
     "s_date" => "-",
-];
+];   
 }
 
+
 ?>
-<h3 class="text-sm-center">Souscriptions</h3>
+<h3 class="text-sm-center">categories | Souscriptions</h3>
 
 <table class="table table-bordered">
   <thead>
@@ -76,7 +77,7 @@ $data[count($data)+1] = [
           <td><?= ucfirst($value["m_nom"]) ?></td>
           <td><?= ucfirst($value["m_postnom"]) ?></td>
           <td><?= ucfirst($value["m_prenom"]) ?></td>
-          <!-- <td><?= ''// $value["s_chapelle"] ?></td> -->
+          <!-- <td><?= ''//$value["s_chapelle"] ?></td> -->
           <td><?= $value["s_categorie"] ?></td>
           <td><?= number_format((int)$value["s_montant"], 0, ',', ' ') . " CDF <br> (" . number_format(((int)$value["s_montant"] / $taux), 2, ',', ' ') . " USD)" ?></td>
           <td><?= number_format((int)$value["s_total_released"], 0, '.', ' ') . " CDF <br> (" . number_format(((int)$value["s_total_released"] / $taux), 2, ',', ' ') . " USD)" ?></td>

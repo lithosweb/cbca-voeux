@@ -10,11 +10,19 @@ use v\model\validation\Helpers as ValidationHelpers;
 $data = $_GET;
 
 ValidationHelpers::validUpdate($data); 
+if (! array_key_exists("_", $data)) {
+  header("Location: /souscriptions");
+  exit;
+}
+if ($data["_"] == '') {
+  header("Location: /souscriptions");
+  exit;
+}
 
 $db = new Database;
 $da = $db->selectJoinMembersRemotly("members", "subscriptions", $data["_"]);
 if (empty($da)) {
-  header("Location: /subscriptions");
+  header("Location: /souscriptions");
   exit;
 }
 $taux = Helpers::getTaux();

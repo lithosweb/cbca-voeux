@@ -9,6 +9,4 @@ use v\error\ErrorHandler;
 Auth::startSession();
 
 $co = new Controller;
-$meth = Controller::method();
-$uri = Controller::uri();
-$co->getUserInfos($meth, $uri);
+$co->getUserInfos(Controller::method(), Controller::uri());

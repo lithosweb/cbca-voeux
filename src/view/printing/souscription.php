@@ -1,1 +1,1 @@
-<h1>Specific categories</h1>
+<h1>Specific categorie</h1>

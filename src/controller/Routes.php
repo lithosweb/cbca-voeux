@@ -16,6 +16,9 @@ class Routes
             "/liberations" => "liberations",
             "/souscriptions" => "souscriptions",
 
+            // Filtering
+            "/souscriptions/categorie" => "categorie-souscription",
+
             // Creation
             "/membre/creer" => "create-membre",
             "/liberation/creer" => "create-liberation",

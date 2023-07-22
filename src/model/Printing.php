@@ -8,15 +8,9 @@ use Dompdf\Options;
 class Printing
 {
 
-    // public Dompdf $dompdf;
-    // public Options $options;
-
     public function __construct()
     {
     }
-
-
-
 
     public function resolve($data)
     {
@@ -49,16 +43,16 @@ class Printing
 
     public function customPrint($data)
     {
-        $this->printingResult("<p class='text-sm-center mb-3'>" . $data["text"] . "</p>", false);
+        $this->printingResult("<p class='text-sm-center mb-3'>" . $data["text"] . "</p>", "rapport", false);
     }
 
     public function printLiberations()
     {
-        $this->printingResult("liberations");
+        $this->printingResult("liberations", "liberations");
     }
     public function printMembres()
     {
-        $this->printingResult("membres");
+        $this->printingResult("membres", "membres");
     }
 
     public function printSouscriptions($data)
@@ -97,7 +91,7 @@ class Printing
                 break;
 
             case 'all':
-                $this->printingResult("souscriptions");
+                $this->printingResult("souscriptions", "souscriptions");
                 break;
 
             default:
@@ -106,7 +100,7 @@ class Printing
         }
     }
 
-    public function printingResult($html, $bool = true)
+    public function printingResult($html, $categorie, $bool = true)
     {
         $options = new Options();
         $options = $options->setChroot(__DIR__ . "/../view/layout/icon/logo.png");
@@ -114,9 +108,9 @@ class Printing
 
         $dompdf = new Dompdf($options);
         if ($bool == true) {
-            $htmll = View::renderViewForPrint($html);
+            $htmll = View::renderViewForPrint(html: $html, categorie: strtoupper($categorie));
         } else {
-            $htmll = View::renderViewForCustomPrint($html);
+            $htmll = View::renderViewForCustomPrint(html: $html, categorie: strtoupper($categorie));
         }
         $dompdf->loadHtml($htmll, "UTF-8");
         $dompdf->setPaper("A4", "landscape");

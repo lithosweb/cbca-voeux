@@ -1,12 +1,9 @@
-<?php
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <title>Document</title> -->
 </head>
 
 <body>
@@ -19,26 +16,27 @@
     <div class="container-fluid">
       <h4 class="text-sm-center fs-2">POSTE ECCLESIASTIQUE DE GOMA</h4>
       <h3 class="text-sm-center fs-3">CHAPELLE 3ème CBCA KASIKA</h3>
-      <img src="" alt="" srcset="">
-      <!-- <h3 class="text-sm-center fs-4">FICHE DE RAPPORT DE LA SEMAINE N°28 DU 10 JUILLET AU 16 JUILLET 2023</h3> -->
-      <h3 class="text-sm-center fs-4">SITUATION AHADI 2023 | <?= "LIBERATIONS" ?></h3>
-      <!-- FICHE DE RAPPORT DE LA SEMAINE N°28 DU 10 JUILLET AU 16 JUILLET 2023 -->
-    </div>
 
-    <div class="container text-center">
-      <div class="row">
-        <div class="col">
-          <!-- Column -->
+
+      <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            <!-- Column -->
+          </div>
+          <div class="col">
+            <img src=<?= __DIR__ . "/icon/logo.png" ?> alt="CBCA logo" srcset="" class="img-thumbnail mx-auto p-2 justify-content-sm-center" style="width: 50px;">
+            <!-- column -->
+          </div>
+          <div class="col">
+            <!-- Column -->
+          </div>
         </div>
-        <div class="col">
-          <img src=<?= __DIR__ . "/icon/logo.png" ?> alt="" srcset="" class="img-thumbnail mx-auto p-2 justify-content-sm-center" style="width: 50px;" alt="CBCA logo">
-          <!-- column -->
-          <!-- <img src="..." class="img-thumbnail" alt="..."> -->
-        </div>
-        <div class="col">
-          <!-- Column -->
-        </div>
+
+
       </div>
+      <!-- <h3 class="text-sm-center fs-4">FICHE DE RAPPORT DE LA SEMAINE N°28 DU 10 JUILLET AU 16 JUILLET 2023</h3> -->
+      <h3 class="text-sm-center fs-4">SITUATION AHADI 2023 | {{categorie}} </h3>
+      <!-- FICHE DE RAPPORT DE LA SEMAINE N°28 DU 10 JUILLET AU 16 JUILLET 2023 -->
     </div>
 
   </div>
@@ -118,17 +116,100 @@
     </span>
 
     <span class="g-col-4">
-      <p class="text-sm-start end-50">POUR LA CHAPELLE CBCA KASIKA</p>
-      <p class="text-sm-start end-50">Rév. LUKOO MAONERO Innocent</p>
-      <p class="text-sm-start end-50">PASTEUR PAROISSIAL</p>
 
       <span class="g-col-4">
-        <p class="text-sm-end start-50">POUR LA COMPTABILITE</p>
-        <p class="text-sm-end start-50">MUMBERE GILBERT JOEL</p>
-        <p class="text-sm-end start-50">SECRETAIRE COMPTABLE</p>
       </span>
 
   </div>
+
+
+  <table class="table table-bordered grid">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col">POUR LA CHAPELLE CBCA KASIKA</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col text-sm-end">POUR LA COMPTABILITE</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row">Rev. LUKOO MAONERO Innocent</td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row text-sm-end">MUMBERE GILBERT JOEL</td>
+      </tr>
+
+      <tr>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row text-sm-end">&nbsp; &nbsp;</td>
+      </tr>
+      <tr>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row text-sm-end">&nbsp; &nbsp;</td>
+      </tr>
+      <tr>
+      <tr>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row">&nbsp; &nbsp;</td>
+        <td scope="row text-sm-end">&nbsp; &nbsp;</td>
+      </tr>
+
+      <tr>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row">PASTEUR PAROISSIAL</td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row"></td>
+        <td scope="row text-sm-end">SECRETAIRE COMPTABLE</td>
+      </tr>
+  </tbody>
+</table>
 
 
 </body>

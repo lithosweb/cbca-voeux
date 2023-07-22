@@ -56,6 +56,11 @@ class Model
                 View::renderView("souscriptions", "main");
                 break;
 
+            case "/souscriptions/categorie":
+                $this->au->verifyAuth();
+                View::renderView("categorie-souscription", "main");
+                break;
+
                 // Create Pages
 
             case "/membre/creer":

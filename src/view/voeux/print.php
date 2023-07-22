@@ -28,6 +28,7 @@
       <option value="m.j.c">M.J.C</option>
       <option value="hors.categorie">Hors categorie</option>
       <option value="all">Toutes categories</option>
+      <option value="custom">Personnaliser</option>
     </select>
 
         <button type="submit" class="btn btn-sm btn-primary mt-3">Submit</button>

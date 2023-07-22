@@ -8,7 +8,7 @@ use v\model\database\Select;
 use v\model\validation\Helpers as ValidationHelpers;
 
 $data = $_GET;
-ValidationHelpers::validUpdate($data); 
+ValidationHelpers::validUpdate($data);
 $da = new Database;
 $d = $da->selectOneResult("members", $data["_"]);
 ?>

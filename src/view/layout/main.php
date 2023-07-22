@@ -49,12 +49,15 @@ $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
             <a class="btn btn-outline-success" href="/souscriptions">Souscriptions</a>
           </li>
           <li class='nav-item mx-md-2'>
+            <a class="btn btn-outline-success" href="/souscriptions/categorie">categories</a>
+          </li>
+          <li class='nav-item mx-md-2'>
             <a class="btn btn-outline-success" href="/liberations">Liberations</a>
           </li>
           <li class='nav-item mx-md-2'>
             <a class="btn btn-outline-success" href="/taux">Taux</a>
           </li>
-            <li class='nav-item mx-md-2'>
+          <li class='nav-item mx-md-2'>
             <a class="btn btn-outline-success" href="/print">Imprimer</a>
           </li>
 
@@ -73,6 +76,10 @@ $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
 
                                                       case '/liberations':
                                                         echo "/liberations";
+                                                        break;
+
+                                                      case '/souscriptions/categorie':
+                                                        echo "/souscriptions/categorie";
                                                         break;
 
                                                       default:

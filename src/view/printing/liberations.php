@@ -17,7 +17,7 @@ $data = $db->selectJoinMembersForPrint("members", "releases");
       <th scope="col">Prenom</th>
       <th scope="col">Montant</th>
       <th scope="col">Taux</th>
-      <th scope="col">Date</th>
+      <th scope="col">Observation</th>
     </tr>
   </thead>
   <?php if (! empty($data)): ?>
@@ -30,7 +30,7 @@ $data = $db->selectJoinMembersForPrint("members", "releases");
         <td><?= $value["m_prenom"] ?></td>
         <td><?= $value["r_montant"] . " CDF" ?></td>
         <td><?= $taux . " CDF" ?></td>
-        <td><?= $value["r_date"] ?></td>
+        <td><?= " " ?></td>
       </tr>
     <?php endforeach; ?>
   </tbody>

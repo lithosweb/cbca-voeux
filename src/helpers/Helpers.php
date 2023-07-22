@@ -66,7 +66,11 @@ class Helpers
       return $taux;
     } else {
       $taux = (int) $data["taux"];
-      return $taux;
+      if ($data["taux"] == 0){
+        return $taux = 2500;
+      } else {
+        return $taux;
+      }
     }
   }
 }

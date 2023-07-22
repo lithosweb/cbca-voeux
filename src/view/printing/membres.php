@@ -15,7 +15,7 @@ $data = $db->selectAllForPrint("members");
       <th scope="col">Prenom</th>
       <th scope="col">Sexe</th>
       <th scope="col">Telephone</th>
-      <th scope="col">Date</th>
+      <th scope="col">Observation</th>
     </tr>
   </thead>
   <?php if (!empty($data)) : ?>
@@ -28,7 +28,7 @@ $data = $db->selectAllForPrint("members");
           <td><?= $value["m_prenom"] ?></td>
           <td><?= $value["m_sexe"] ?></td>
           <td><?= $value["m_telephone"] ?></td>
-          <td><?= $value["m_date"] ?></td>
+          <td><?= " " ?></td>
         </tr>
       <?php endforeach; ?>
     </tbody>

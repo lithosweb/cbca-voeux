@@ -1,9 +1,10 @@
+--logins--
+    .|| gilbert || gilbert123
+    .|| admin   ||  admin123
+--logins--
 
---tomorrow sun-16-july-2023--
-
-. printing need to be implemented
-
-|| gilbert || gilbert123
-|| admin   ||  admin123
-
--- back soon --
+--tomorrow--
+    .resolve the heading and footer on printing
+    .resolve sorting and filtering on print
+    .make the header detect automatically the title
+--tomorrow--

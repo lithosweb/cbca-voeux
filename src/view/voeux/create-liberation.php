@@ -8,7 +8,15 @@ use v\model\database\Select;
 use v\model\validation\Helpers as ValidationHelpers;
 
 $data = $_GET;
-ValidationHelpers::validUpdate($data); 
+ValidationHelpers::validUpdate($data);
+if (! array_key_exists("_", $data)) {
+  header("Location: /souscriptions");
+  exit;
+}
+if ($data["_"] == '') {
+  header("Location: /souscriptions");
+  exit;
+}
 $da = new Database;
 $d = $da->selectOneResult("members", $data["_"]);
 ?>

@@ -59,42 +59,47 @@ class Printing
     {
         switch ($data["categorie"]) {
             case 'neophyte':
-                # code...
+                $this->printingResult("souscription-neophyte", 'neophytes');
                 break;
 
             case 'commercant':
-                # code...
+                $this->printingResult("souscription-commercant", 'commercants');
                 break;
 
             case 'min.enfant':
-                # code...
+                $this->printingResult("souscription-minenfant", 'min.enfants');
                 break;
 
             case 'fundi.mikono':
-                # code...
+                $this->printingResult("souscription-fundimikono", 'fundi.mikono');
                 break;
 
             case 'debrouillard':
-                # code...
+                $this->printingResult("souscription-debrouillard", 'debrouillards');
                 break;
 
             case 'fonctionnaire':
-                # code...
+                $this->printingResult("souscription-fonctionnaire", 'fonctionnaires');
                 break;
 
             case 'm.j.c':
-                # code...
+                $this->printingResult("souscription-mjc", 'm.j.c');
                 break;
 
             case 'hors.categorie':
-                # code...
+                $this->printingResult("souscription-horscategorie", 'hors.categorie');
                 break;
 
             case 'all':
                 $this->printingResult("souscriptions", "souscriptions");
                 break;
 
+            case 'custom':
+                header("Location: /print/custom");
+                break;
+
             default:
+                $this->printingResult("souscriptions", "souscriptions");
                 header("Location: /print");
                 break;
         }
@@ -104,6 +109,7 @@ class Printing
     {
         $options = new Options();
         $options = $options->setChroot(__DIR__ . "/../view/layout/icon/logo.png");
+
         // $options = $options->setIsRemoteEnabled(true); for remote ressource
 
         $dompdf = new Dompdf($options);
@@ -115,6 +121,6 @@ class Printing
         $dompdf->loadHtml($htmll, "UTF-8");
         $dompdf->setPaper("A4", "landscape");
         $dompdf->render();
-        $dompdf->stream( "voeux-du-" . date("d-F-Y") . ".pdf", ["Attachment" => 0]);
+        $dompdf->stream("voeux-du-" . date("d-F-Y") . ".pdf", ["Attachment" => 0]);
     }
 }

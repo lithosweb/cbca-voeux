@@ -17,33 +17,6 @@ if (empty($dat)) {
 } else {
   $data = $db->selectJoinMembers("members", "subscriptions", "members.m_nom", $dat["_"]);
 }
-
-$sous = 0;
-$lib = 0;
-$eca = 0;
-foreach ($data as $k => $v) {
-$sous += (int) $v["s_montant"];
-$lib += (int) $v["s_total_released"];
-$eca += (int) $v["s_ecart"];
-}
-
-if (! empty($data)) {
-$data[count($data)+1] = [
-    "m_code" => "",
-    "m_nom" => "TOTAUX",
-    "m_postnom" => "GENERAUX",
-    "m_prenom" => "-",
-    "s_code" => "",
-    "s_code_membre" => "",
-    "s_categorie" => "-",
-    "s_montant" => $sous,
-    "s_total_released" => $lib,
-    "s_ecart" => $eca,
-    "s_taux_real" => "",
-    "s_date" => "-",
-];
-}
-
 ?>
 <h3 class="text-sm-center">Souscriptions</h3>
 
@@ -110,6 +83,29 @@ $data[count($data)+1] = [
           </td>
         </tr>
       <?php endforeach ?>
+      <?php      $sous = 0;
+$lib = 0;
+$eca = 0;
+foreach ($data as $k => $v) {
+$sous += (int) $v["s_montant"];
+$lib += (int) $v["s_total_released"];
+$eca += (int) $v["s_ecart"];
+}
+?>
+      <tr>
+      <th scope="col"><?= '-###-'?></th>
+      <th scope="col"><?= "TOTAUX" ?></th>
+      <th scope="col"><?= "-###-" ?></th>
+      <th scope="col"><?= "GENERAUX" ?></th>
+      <th scope="col"><?= '-###-' ?></th>
+      <th scope="col"><?= number_format((int)$sous, 0, ',', ' ')  . " CDF <br> (" . number_format(((int)$sous / $taux), 2, ',', ' ') . " USD)"; ?></th>
+      <th scope="col"><?= number_format((int)$lib, 0, ',', ' ') . " CDF <br> (" . number_format(((int)$lib / $taux), 2, ',', ' ') . " USD)"; ?></th>
+      <th scope="col"><?= number_format((int)$eca, 0, ',', ' ') . " CDF <br> (" . number_format(((int)$eca / $taux), 2, ',', ' ') . " USD)"; ?></th>
+      <th scope="col"><?= "-###-" ?></th>
+      <th scope="col"><?= "-###-" ?></th>
+      <th scope="col"><?= '-###-' ?></th>
+      <th scope="col"><?= '-###-' ?></th>
+    </tr>
     </tbody>
 </table>
 <?php endif ?>

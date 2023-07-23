@@ -60,6 +60,22 @@ if (empty($dat)) {
         </td>
       </tr>
     <?php endforeach ?>
+    <?php
+$lib = 0;
+foreach ($data as $k => $v) {
+$lib += (int) $v["r_montant"];
+}
+?>
+      <tr>
+      <th scope="col"><?= '-###-'?></th>
+      <th scope="col"><?= "TOTAUX" ?></th>
+      <th scope="col"><?= "GENERAUX" ?></th>
+      <th scope="col"><?= '-###-' ?></th>
+      <th scope="col"><?= number_format((int)$lib, 0, ',', ' ') . " CDF <br> (" . number_format(((int)$lib / $taux), 2, ',', ' ') . " USD)"; ?></th>
+      <th scope="col"><?= number_format((int) $taux, 0, ',', ' ') . " CDF" ?></th>
+      <th scope="col"><?= "-###-" ?></th>
+      <th scope="col"><?= '-###-' ?></th>
+    </tr>
   </tbody>
 </table>
 <?php endif ?>

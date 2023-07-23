@@ -4,7 +4,7 @@
 --logins--
 
 --tomorrow--
-    .resolve the heading and footer on printing
     .resolve sorting and filtering on print
     .make the header detect automatically the title
+    .list releases sorting with his owner
 --tomorrow--

@@ -5,7 +5,7 @@ use v\helpers\Helpers;
 use v\model\database\Printing;
 
 $db = new Printing;
-$data = $db->selectJoinMembersForPrint("members", "subscriptions");
+$data = $db->selectJoinMembersAtForPrint("members", "subscriptions", "neophyte");
 $taux = Helpers::getTaux();
 ?>
 <table class="table table-bordered">

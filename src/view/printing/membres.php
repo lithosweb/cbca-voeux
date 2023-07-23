@@ -22,15 +22,24 @@ $data = $db->selectAllForPrint("members");
     <tbody>
       <?php foreach ($data as $key => $value) : ?>
         <tr>
-          <th scope="row">~</th>
-          <td><?= $value["m_nom"] ?></td>
-          <td><?= $value["m_postnom"] ?></td>
-          <td><?= $value["m_prenom"] ?></td>
-          <td><?= $value["m_sexe"] ?></td>
-          <td><?= $value["m_telephone"] ?></td>
-          <td><?= " " ?></td>
+          <td scope="row">~</td>
+          <td scope="row"><?= $value["m_nom"] ?></td>
+          <td scope="row"><?= $value["m_postnom"] ?></td>
+          <td scope="row"><?= $value["m_prenom"] ?></td>
+          <td scope="row"><?= $value["m_sexe"] ?></td>
+          <td scope="row"><?= $value["m_telephone"] ?></td>
+          <td scope="row"><?= " " ?></td>
         </tr>
       <?php endforeach; ?>
+      <tr>
+        <th scope="col">_______________</th>
+        <th scope="col">_______________</th>
+        <th scope="col">_______________</th>
+        <th scope="col">_______________</th>
+        <th scope="col">_______________</th>
+        <th scope="col">_______________</th>
+        <th scope="col">_______________</th>
+      </tr>
     </tbody>
   <?php endif; ?>
 </table>

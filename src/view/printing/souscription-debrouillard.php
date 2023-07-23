@@ -4,8 +4,10 @@ require_once __DIR__ . "/../../../vendor/autoload.php";
 use v\helpers\Helpers;
 use v\model\database\Printing;
 
+// $categorie
+
 $db = new Printing;
-$data = $db->selectJoinMembersForPrint("members", "subscriptions");
+$data = $db->selectJoinMembersAtForPrint("members", "subscriptions", "debrouillard");
 $taux = Helpers::getTaux();
 ?>
 <table class="table table-bordered">

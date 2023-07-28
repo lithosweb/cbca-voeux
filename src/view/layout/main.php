@@ -17,12 +17,10 @@ $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
 </head>
 
 <body class="p-3 mb-2 bg-dark text-white">
-  <!-- STYLING DOCUMENT -->
+
   <style type="text/css">
     <?= file_get_contents(__DIR__ . "/css/main.css") ?>
   </style>
-  <!-- STYLING DOCUMENT -->
-
 
   <div class="pe-3 me-3 container text-center">
     <h1>
@@ -102,7 +100,9 @@ $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
     {{content}}
   </div>
 
-  <script src="js/main.js"></script>
+  <script>
+       <?= file_get_contents(__DIR__ . "/js/main.js") ?>
+  </script>
 </body>
 
 </html>

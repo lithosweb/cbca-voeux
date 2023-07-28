@@ -4,11 +4,10 @@ use PDO;
 use v\model\Database;
 
 
-        // SPECIAL FUNCTIONS
-        
-class Helpers extends Database{
-
-        
+/**
+ * All Helpers methods, This class extends the Base Database Class
+ */
+class Helpers extends Database{    
     // Admin function...
 
     public function verifyAdmin($data)

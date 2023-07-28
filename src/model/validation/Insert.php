@@ -1,12 +1,14 @@
 <?php
 namespace v\model\validation;
 
-
 use v\model\Validation;
 
-class Insert extends Validation {
 
-    
+/**
+ * All Inserts methods, This class extends the Base Validation Class
+ */
+
+class Insert extends Validation {    
     // ALL INSERT METHODS
 
     public function insertMember($data)

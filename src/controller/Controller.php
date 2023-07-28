@@ -1,6 +1,9 @@
 <?php
 namespace v\controller;
 
+/**
+ * The Base Controller
+ */
 class Controller{
   public Router $router;
 
@@ -14,7 +17,7 @@ return $_SERVER["REQUEST_METHOD"];
 }
 
 public static function uri(){
-return $_SERVER["REQUEST_URI"];
+return parse_url($_SERVER["REQUEST_URI"])["path"];
 }
 
 

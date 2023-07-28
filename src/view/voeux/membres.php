@@ -18,7 +18,6 @@ if (empty($data)) {
   <thead>
 
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Nom</th>
       <th scope="col">Postnom</th>
       <th scope="col">Prenom</th>
@@ -32,7 +31,6 @@ if (empty($data)) {
     <tbody>
       <?php foreach ($data as $key => $value) : ?>
         <tr>
-          <th scope="row">~</th>
           <td scope="row"><?= ucfirst($value["m_nom"]) ?></td>
           <td scope="row"><?= ucfirst($value["m_postnom"]) ?></td>
           <td scope="row"><?= ucfirst($value["m_prenom"]) ?></td>

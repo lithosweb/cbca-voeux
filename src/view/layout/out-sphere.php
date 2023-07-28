@@ -17,27 +17,23 @@
 
 <body class="p-3 mb-2 bg-black text-white mb-0">
 
-  <!-- STYLING DOCUMENT -->
   <style>
     <?= file_get_contents(__DIR__ . "/css/main.css") ?>
   </style>
-  <!-- STYLING DOCUMENT -->
 
   <div class="mt-5 pt-5 py-3">
     <div class="fs-1 d-flex align-items-center justify-content-center">
       Login
     </div>
 
-
-
-
     <div class="d-flex align-items-center justify-content-center">
       {{content}}
     </div>
 
   </div>
-  <script src="js/main.js"></script>
+  <script>
+       <?= file_get_contents(__DIR__ . "/js/main.js") ?>
+  </script>
 </body>
-
 
 </html>

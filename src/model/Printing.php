@@ -5,12 +5,12 @@ namespace v\model;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
+
+/**
+ * The main Class for Printing
+ */
 class Printing
 {
-
-    public function __construct()
-    {
-    }
 
     public function resolve($data)
     {
@@ -24,11 +24,15 @@ class Printing
                 break;
 
             case 'membres':
-                $this->printMembres();
+                $this->printMembres($data);
+                break;
+
+            case 'liberation':
+                $this->printLiberation($data);
                 break;
 
             case 'liberations':
-                $this->printLiberations();
+                $this->printLiberations($data);
                 break;
 
             case 'custom':
@@ -43,74 +47,76 @@ class Printing
 
     public function customPrint($data)
     {
-        $this->printingResult("<p class='text-sm-center mb-3'>" . $data["text"] . "</p>", "rapport", false);
+        $this->printingResult("<p class='text-sm-center mb-3'>" . $data["text"] . "</p>", "rapport", false, orientation: $data["display"]);
     }
 
-    public function printLiberations()
+    public function printLiberations($data)
     {
-        $this->printingResult("liberations", "liberations");
+        $this->printingResult("liberations", "liberations", orientation: $data["display"]);
     }
-    public function printMembres()
+
+    public function printLiberation($data)
     {
-        $this->printingResult("membres", "membres");
+        $this->printingResult("liberation", "liberations", orientation: $data["display"]);
+    }
+
+    public function printMembres($data)
+    {
+        $this->printingResult("membres", "membres", orientation: $data["display"]);
     }
 
     public function printSouscriptions($data)
     {
         switch ($data["categorie"]) {
             case 'neophyte':
-                $this->printingResult("souscription-neophyte", 'neophytes');
+                $this->printingResult("souscription", $data["categorie"], orientation: $data["display"]);
                 break;
 
             case 'commercant':
-                $this->printingResult("souscription-commercant", 'commercants');
+                $this->printingResult("souscription", $data["categorie"], orientation: $data["display"]);
                 break;
 
             case 'min.enfant':
-                $this->printingResult("souscription-minenfant", 'min.enfants');
+                $this->printingResult("souscription", $data["categorie"], orientation: $data["display"]);
                 break;
 
             case 'fundi.mikono':
-                $this->printingResult("souscription-fundimikono", 'fundi.mikono');
+                $this->printingResult("souscription", $data["categorie"], orientation: $data["display"]);
                 break;
 
             case 'debrouillard':
-                $this->printingResult("souscription-debrouillard", 'debrouillards');
+                $this->printingResult("souscription", $data["categorie"], orientation: $data["display"]);
                 break;
 
             case 'fonctionnaire':
-                $this->printingResult("souscription-fonctionnaire", 'fonctionnaires');
+                $this->printingResult("souscription", $data["categorie"], orientation: $data["display"]);
                 break;
 
             case 'm.j.c':
-                $this->printingResult("souscription-mjc", 'm.j.c');
+                $this->printingResult("souscription", $data["categorie"], orientation: $data["display"]);
                 break;
 
             case 'hors.categorie':
-                $this->printingResult("souscription-horscategorie", 'hors.categorie');
+                $this->printingResult("souscription", $data["categorie"], orientation: $data["display"]);
                 break;
 
             case 'all':
-                $this->printingResult("souscriptions", "souscriptions");
-                break;
-
-            case 'custom':
-                header("Location: /print/custom");
+                $this->printingResult("souscriptions", $data["table"], orientation: $data["display"]);
                 break;
 
             default:
-                $this->printingResult("souscriptions", "souscriptions");
                 header("Location: /print");
                 break;
         }
     }
 
-    public function printingResult($html, $categorie, $bool = true)
+    public function printingResult($html, $categorie, $bool = true, $orientation = "landscape")
     {
         $options = new Options();
         $options = $options->setChroot(__DIR__ . "/../view/layout/icon/logo.png");
 
-        // $options = $options->setIsRemoteEnabled(true); for remote ressource
+        // for remote ressource, like remote styling...
+        // $options = $options->setIsRemoteEnabled(true); 
 
         $dompdf = new Dompdf($options);
         if ($bool == true) {
@@ -119,8 +125,8 @@ class Printing
             $htmll = View::renderViewForCustomPrint(html: $html, categorie: strtoupper($categorie));
         }
         $dompdf->loadHtml($htmll, "UTF-8");
-        $dompdf->setPaper("A4", "landscape");
+        $dompdf->setPaper("A4", $orientation);
         $dompdf->render();
-        $dompdf->stream("voeux-du-" . date("d-F-Y") . ".pdf", ["Attachment" => 0]);
+        return $dompdf->stream("voeux-du-" . date("d-F-Y") . ".pdf", ["Attachment" => 0]);
     }
 }

@@ -55,8 +55,8 @@ $d = $da->selectOneResult("members", $data["_"]);
     </select>
 
     <label class="form-label">Montant</label>
-    <input type="number" name="montant" class="form-control" maxlength="20" placeholder="Montant"> <br>
+    <input type="number" name="montant" class="form-control" maxlength="20" placeholder="Montant" autofocus> <br>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Souscrire</button>
   </div>
 </form>

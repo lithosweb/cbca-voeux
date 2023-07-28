@@ -25,7 +25,10 @@ if (empty($da)) {
   header("Location: /souscriptions");
   exit;
 }
-$taux = Helpers::getTaux();
+$taux = (int)Helpers::getTaux();
+if ($taux == 0) {
+$taux = 2500;
+}
 ?>
 <h3 class="text-sm-center">Modifier souscription</h3>
 
@@ -69,7 +72,7 @@ $taux = Helpers::getTaux();
 
  <label for="montant">Montant</label>
  <input type="text" class="form-control" placeholder="Chapelle" value="<?= number_format($da["s_montant"], 0, ',', ' ') . " CDF (". number_format(($da["s_montant"] / $taux), 2, ',', ' ')." USD)" ?>" disabled>
- <input type="number" name="montant" class="form-control" id="">
+ <input type="number" name="montant" class="form-control" id="" required value="<?= $da["s_montant"] ?>">
 
- <button type="submit" class="btn btn-primary mt-3">Submit</button>
+ <button type="submit" class="btn btn-primary mt-3">Modifier</button>
 </form>

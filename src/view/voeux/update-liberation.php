@@ -37,7 +37,7 @@ $taux = Helpers::getTaux();
  <label for="montant">Montant</label>
  <input type="text" class="form-control" placeholder="Chapelle" value="<?= $da["r_montant"] . "CDF (". number_format(($da["r_montant"] / $taux), 2, ',', ' ') . " USD)"?>" disabled readonly> 
 
- <input type="number" name="montant" class="form-control" id="" placeholder="Nouveau montant">
+ <input type="number" name="montant" class="form-control" id="" placeholder="Nouveau montant" required value="<?= $da["r_montant"] ?>">
 
- <button type="submit" class="btn btn-primary mt-3">Submit</button>
+ <button type="submit" class="btn btn-primary mt-3">Modifier</button>
 </form>

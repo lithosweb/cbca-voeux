@@ -5,7 +5,7 @@ use v\helpers\Helpers;
 use v\model\database\Printing;
 
 $db = new Printing;
-$data = $db->selectJoinMembersForPrint("members", "subscriptions");
+$data = $db->selectJoinMembersAtForPrint("members", "subscriptions", $_POST["categorie"]);
 $taux = Helpers::getTaux();
 ?>
 <table class="table table-bordered">
@@ -48,14 +48,14 @@ $taux = Helpers::getTaux();
       ?>
 <hr>
       <tr>
-        <th scope="col"><?= "-###-" ?></th>
+        <th scope="col"><?= "" ?></th>
         <th scope="col"><?= "TOTAUX" ?></th>
         <th scope="col"><?= "GENERAUX" ?></th>
-        <th scope="col"><?= '-###-' ?></th>
+        <th scope="col"><?= '' ?></th>
         <th scope="col"><?= number_format((int)$sous, 0, ',', ' ')  . " CDF <br> (" . number_format(((int)$sous / $taux), 2, ',', ' ') . " USD)"; ?></th>
         <th scope="col"><?= number_format((int)$lib, 0, ',', ' ') . " CDF <br> (" . number_format(((int)$lib / $taux), 2, ',', ' ') . " USD)"; ?></th>
         <th scope="col"><?= number_format((int)$eca, 0, ',', ' ') . " CDF <br> (" . number_format(((int)$eca / $taux), 2, ',', ' ') . " USD)"; ?></th>
-        <th scope="col"><?= "-###-" ?></th>
+        <th scope="col"><?= "" ?></th>
         <th scope="col"><?= "" ?></th>
       </tr>
     </tbody>

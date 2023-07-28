@@ -1,13 +1,14 @@
 <?php
 namespace v\model\database;
 
-
 use PDO;
 use v\model\Database;
 
+
+/**
+ * All updates methods, This class extends the Base Database Class
+ */
 Class Update extends Database{
-    
-    
     // All update s methods
 
     public function updateMember($code, $data)

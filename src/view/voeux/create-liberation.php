@@ -44,6 +44,6 @@ $d = $da->selectOneResult("members", $data["_"]);
     <label class="form-label" for="montant">Montant</label>
     <input type="number" name="montant" class="form-control" maxlength="20" placeholder="Montant"> <br>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Liberer</button>
 </div>
 </form>

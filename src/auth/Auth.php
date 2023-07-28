@@ -3,6 +3,9 @@ namespace v\auth;
 
 use v\model\Database;
 
+/**
+ * The main Authentication class
+ */
 class Auth
 {
 
@@ -19,7 +22,6 @@ class Auth
 
     public static function appAuth($data)
     {
-        $_SESSION = [];
         $_SESSION["session"] = password_hash($data["password"], PASSWORD_DEFAULT);
         return $_SESSION;
     }
@@ -38,10 +40,10 @@ class Auth
             header("Location: /connexion");
             exit;
         }
+        return $name;
     }
 
     public static function getBlankSession(){
-        $_SESSION = [];
         session_unset();
         return session_destroy();
     }

@@ -23,7 +23,6 @@ if (empty($dat)) {
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Nom</th>
       <th scope="col">Postnom</th>
       <th scope="col">Prenom</th>
@@ -45,7 +44,6 @@ if (empty($dat)) {
         // $foreign = $db->selectAll("subscriptions");
       ?>
         <tr>
-          <td><?= "~" ?></td>
           <td><?= ucfirst($value["m_nom"]) ?></td>
           <td><?= ucfirst($value["m_postnom"]) ?></td>
           <td><?= ucfirst($value["m_prenom"]) ?></td>
@@ -93,18 +91,16 @@ $eca += (int) $v["s_ecart"];
 }
 ?>
       <tr>
-      <th scope="col"><?= '-###-'?></th>
+      <th scope="col"><?= "" ?></th>
       <th scope="col"><?= "TOTAUX" ?></th>
-      <th scope="col"><?= "-###-" ?></th>
       <th scope="col"><?= "GENERAUX" ?></th>
-      <th scope="col"><?= '-###-' ?></th>
+      <th scope="col"><?= '' ?></th>
       <th scope="col"><?= number_format((int)$sous, 0, ',', ' ')  . " CDF <br> (" . number_format(((int)$sous / $taux), 2, ',', ' ') . " USD)"; ?></th>
       <th scope="col"><?= number_format((int)$lib, 0, ',', ' ') . " CDF <br> (" . number_format(((int)$lib / $taux), 2, ',', ' ') . " USD)"; ?></th>
       <th scope="col"><?= number_format((int)$eca, 0, ',', ' ') . " CDF <br> (" . number_format(((int)$eca / $taux), 2, ',', ' ') . " USD)"; ?></th>
-      <th scope="col"><?= "-###-" ?></th>
-      <th scope="col"><?= "-###-" ?></th>
-      <th scope="col"><?= '-###-' ?></th>
-      <th scope="col"><?= '-###-' ?></th>
+      <th scope="col"><?= "" ?></th>
+      <th scope="col"><?= "" ?></th>
+      <th scope="col"><?= '' ?></th>
     </tr>
     </tbody>
 </table>

@@ -3,6 +3,11 @@ namespace v\model\database;
 
 use v\model\Database;
 
+
+/**
+ * All printing methods, This class extends the Base Database Class
+ * All methods here are special to Printing
+ */
 class Printing extends Database{
 
     // All selection s printing methods

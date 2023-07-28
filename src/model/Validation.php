@@ -10,6 +10,10 @@ use v\model\database\Helpers as DatabaseHelpers;
 use v\model\database\Insert;
 use v\model\database\Update;
 
+
+/**
+ * The Base Validation Class
+ */
 class Validation
 {
     public PDO $pdo;

@@ -1,9 +1,12 @@
 <?php
 namespace v\model\validation;
 
-
 use v\model\Validation;
 
+
+/**
+ * All delete methods, This class extends the Base Validation Class
+ */
 class Delete extends Validation {
     
     // ALL DELETE METHOD

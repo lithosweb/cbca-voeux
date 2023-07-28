@@ -9,7 +9,6 @@ $data = $db->selectAllForPrint("members");
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Nom</th>
       <th scope="col">Postnom</th>
       <th scope="col">Prenom</th>
@@ -22,7 +21,6 @@ $data = $db->selectAllForPrint("members");
     <tbody>
       <?php foreach ($data as $key => $value) : ?>
         <tr>
-          <td scope="row">~</td>
           <td scope="row"><?= $value["m_nom"] ?></td>
           <td scope="row"><?= $value["m_postnom"] ?></td>
           <td scope="row"><?= $value["m_prenom"] ?></td>
@@ -31,15 +29,7 @@ $data = $db->selectAllForPrint("members");
           <td scope="row"><?= " " ?></td>
         </tr>
       <?php endforeach; ?>
-      <tr>
-        <th scope="col">_______________</th>
-        <th scope="col">_______________</th>
-        <th scope="col">_______________</th>
-        <th scope="col">_______________</th>
-        <th scope="col">_______________</th>
-        <th scope="col">_______________</th>
-        <th scope="col">_______________</th>
-      </tr>
+<hr>
     </tbody>
   <?php endif; ?>
 </table>

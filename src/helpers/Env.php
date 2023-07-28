@@ -3,6 +3,10 @@ namespace v\helpers;
 
 use Dotenv\Dotenv;
 
+
+/**
+ * My Env Loading Class
+ */
 class Env
 {
     public static function dbCredentials()

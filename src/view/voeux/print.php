@@ -1,12 +1,12 @@
 <h3 class="text-sm-center">Printing page</h3>
 
 <form class="container" action="/print" method="post" target="_blank">
-    <div class="shadow-lg p-2 mx-5 bg-body rounded">
+  <div class="shadow-lg p-2 mx-5 bg-body rounded">
 
     <select name="display" aria-placeholder="display" class="form-control mb-3">
       <option value="display" disabled>Orientation</option>
       <option value="portrait">Portrait</option>
-      <option value="paysage">Paysage</option>
+      <option value="landscape">Paysage</option>
     </select>
 
     <select name="table" aria-placeholder="table" class="form-control mb-3">
@@ -28,9 +28,8 @@
       <option value="m.j.c">M.J.C</option>
       <option value="hors.categorie">Hors categorie</option>
       <option value="all">Toutes categories</option>
-      <option value="custom">Personnaliser</option>
     </select>
 
-        <button type="submit" class="btn btn-sm btn-primary mt-3">Submit</button>
-    </div>
+    <button type="submit" class="btn btn-sm btn-primary mt-3">Imprimer</button>
+  </div>
 </form>

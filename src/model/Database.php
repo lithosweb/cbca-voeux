@@ -5,6 +5,10 @@ use Dotenv\Dotenv;
 use PDO;
 use v\helpers\Env;
 
+
+/**
+ * The Base Database Class
+ */
 class Database
 {
     public Dotenv $dotenv;
@@ -62,6 +66,19 @@ class Database
         $stmt->bindValue(":code", $code);
         $stmt->execute();
         return $stmt->fetch();
+    }
+
+    //Method for printing a couple releases
+
+    // AND " . $table1 . "." . substr($table1, 0, 1) . "_code = :val
+
+    public function selectReleasesByOneForPrint($value){
+        $sql = "SELECT * FROM releases WHERE r_code_membre = :val ORDER BY r_date DESC";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":val", $value);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
 

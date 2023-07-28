@@ -1,12 +1,13 @@
 <?php
 namespace v\model\validation;
 
-
 use v\model\Validation;
 
-class Update extends Validation {
-    
-    
+
+/**
+ * All updates methods, This class extends the Base Validation Class
+ */
+class Update extends Validation {   
     // ALL UPDATE METHODS
 
     public function updateMember($data)

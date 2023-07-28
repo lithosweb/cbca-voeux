@@ -2,9 +2,12 @@
 
 namespace v\controller;
 
+
+/**
+ * All registered Routes
+ */
 class Routes
 {
-
     public static function getRoutes()
     {
         return [
@@ -16,7 +19,7 @@ class Routes
             "/liberations" => "liberations",
             "/souscriptions" => "souscriptions",
 
-            // Filtering
+            // Filtering subscription table
             "/souscriptions/categorie" => "categorie-souscription",
 
             // Creation
@@ -29,7 +32,7 @@ class Routes
             "/liberation/update" => "update-liberation",
             "/souscription/update" => "update-souscription",
 
-            // Taux
+            // Taux de change
             "/taux" => "taux",
 
             // Error page

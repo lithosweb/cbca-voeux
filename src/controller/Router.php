@@ -6,6 +6,9 @@ use v\controller\Routes;
 use v\helpers\Helpers;
 use v\model\Model;
 
+/**
+ * The Only Router for the app
+ */
 class Router
 {
     public Model $mo;
@@ -17,7 +20,7 @@ class Router
 
     public function manageInfo($meth, $uri)
     {
-        $meth = parse_url(Helpers::sanitizeMeth($meth))["path"];
+        $meth = Helpers::sanitizeMeth($meth);
         $uri = Helpers::sanitizeUri($uri);
 
         switch ($meth) {
@@ -42,7 +45,7 @@ class Router
             default:
                 http_response_code(422);
                 header("Allow: GET, POST");
-                header("Location: /membres");
+                header("Location: /connexion");
                 break;
         }
     }  

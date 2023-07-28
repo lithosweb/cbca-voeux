@@ -3,8 +3,11 @@ namespace v\model\validation;
 use v\auth\Auth;
 use v\model\Validation;
 
+
+/**
+ * All helpers methods, This class extends the Base Validation Class
+ */
 class Helpers extends Validation {
-    
     // ALL OTHERS
     public static function validUpdate($data)
     {

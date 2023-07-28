@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -17,7 +21,6 @@
       <h4 class="text-sm-center fs-2">POSTE ECCLESIASTIQUE DE GOMA</h4>
       <h3 class="text-sm-center fs-3">CHAPELLE 3ème CBCA KASIKA</h3>
 
-
       <div class="container text-center">
         <div class="row">
           <div class="col">
@@ -28,15 +31,11 @@
             <!-- column -->
           </div>
           <div class="col">
-            <!-- Column -->
           </div>
         </div>
 
-
       </div>
-      <!-- <h3 class="text-sm-center fs-4">FICHE DE RAPPORT DE LA SEMAINE N°28 DU 10 JUILLET AU 16 JUILLET 2023</h3> -->
       <h3 class="text-sm-center fs-4">SITUATION AHADI 2023 | {{categorie}} </h3>
-      <!-- FICHE DE RAPPORT DE LA SEMAINE N°28 DU 10 JUILLET AU 16 JUILLET 2023 -->
     </div>
 
   </div>
@@ -46,69 +45,6 @@
     {{content}}
   </div>
 
-  <!-- 
-  <div class="container text-center">
-  <div class="row">
-    <div class="col"> -->
-  <!-- Column -->
-  <!-- </div>
-    <div class="col"> -->
-  <!-- Column -->
-  <!-- <p class="text-sm-center mb-3">Fait a Goma, le <?= " " // . date("d-F-Y") . " " 
-                                                      ?></p>
-    </div>
-    <div class="col"> -->
-  <!-- Column -->
-  <!-- </div>
-  </div>
-</div> -->
-
-
-  <!-- <div class="container text-center">
-  <div class="row align-items-start">
-    <div class="col"> -->
-  <!-- Column -->
-  <!-- <p class="">POUR LA CHAPELLE CBCA KASIKA</p>
-    <p class="">Rév. LUKOO MAONERO Innocent</p>
-    <p class="">PASTEUR PAROISSIAL</p>
-    </div>
-    <div class="col">
-    <p class="">POUR LA COMPTABILITE</p>
-    <p class="">MUMBERE GILBERT Elisha</p>
-    <p class="">SECRETAIRE COMPTABLE</p> -->
-  <!-- Column -->
-  <!-- </div>
-    <div class="col"> -->
-  <!-- Column -->
-  <!-- </div>
-    <div class="col"> -->
-  <!-- Column -->
-  <!-- </div>
-  </div>
-</div> -->
-
-
-  <!-- <div class="container text-center d-flex justify-content-center">
-  <div class="row">
-    <div class="col"> -->
-  <!-- Column -->
-  <!-- <p class="">POUR LA CHAPELLE CBCA KASIKA</p>
-    <p class="">Rév. LUKOO MAONERO Innocent</p>
-    <p class="">PASTEUR PAROISSIAL</p>
-    </div>
-    <div class="col"> -->
-  <!-- Column -->
-  <!-- <p class="text-sm-center mb-3">Fait a Goma, le <?= " " // . date("d-F-Y") . " " 
-                                                      ?></p>
-    </div>
-    <div class="col"> -->
-  <!-- Column -->
-  <!-- <p class="">POUR LA COMPTABILITE</p>
-    <p class="">MUMBERE GILBERT Elisha</p>
-    <p class="">SECRETAIRE COMPTABLE</p>
-    </div>
-  </div>
-</div> -->
 
   <div class="container grid">
     <span class="g-col-4">
@@ -151,7 +87,7 @@
         <td scope="row"></td>
         <td scope="row"></td>
         <td scope="row"></td>
-        <td scope="row text-sm-end">MUMBERE GILBERT JOEL</td>
+        <td scope="row text-sm-end">MUMBERE GILBERT Elisha</td>
       </tr>
 
       <tr>
@@ -211,6 +147,9 @@
   </tbody>
 </table>
 
+<script>
+       <?= file_get_contents(__DIR__ . "/js/main.js") ?>
+  </script>
 
 </body>
 

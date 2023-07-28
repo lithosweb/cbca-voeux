@@ -2,9 +2,3 @@
     .|| gilbert || gilbert123
     .|| admin   ||  admin123
 --logins--
-
---tomorrow--
-    .resolve sorting and filtering on print
-    .make the header detect automatically the title
-    .list releases sorting with his owner
---tomorrow--

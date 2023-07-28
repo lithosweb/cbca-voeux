@@ -14,6 +14,6 @@ $taux = Helpers::getTaux();
         <input type="text" class="form-control" maxlength="50" value='<?= " 1 USD ~ " . number_format($taux, 0, ',', ' ') . " CDF" ?>' disabled readonly>
         <label class="form-label">Nouveau taux</label>
         <input type="number" class="form-control" maxlength="50" placeholder="Inserer taux" name="taux" autofocus required>
-        <button type="submit" class="btn btn btn-primary mt-3">Submit</button>
+        <button type="submit" class="btn btn btn-primary mt-3">Modifier</button>
     </div>
 </form>

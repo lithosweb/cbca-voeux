@@ -9,9 +9,9 @@ $dat = Helpers::sanitizeData($_GET);
 $db = new Database;
 $taux = (int) Helpers::getTaux();
 if ($taux == 0) {
-$taux = 2500;
+  $taux = 2500;
 }
-if (empty($dat)) { 
+if (empty($dat)) {
   $data = $db->selectJoinMembers("members", "releases", "members.m_nom", "");
 } else {
   $data = $db->selectJoinMembers("members", "releases", "members.m_nom", $dat["_"]);
@@ -21,7 +21,6 @@ if (empty($dat)) {
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Nom</th>
       <th scope="col">Postnom</th>
       <th scope="col">Prenom</th>
@@ -31,51 +30,62 @@ if (empty($dat)) {
       <th scope="col">Actions (*)</th>
     </tr>
   </thead>
-  <?php if (! empty($data)): ?>
-  <tbody>
-    <?php foreach ($data as $key => $value) : ?>
-      <tr>
-        <th scope="row"><?= 1 ?></th>
-        <td><?= ucfirst($value["m_nom"]) ?></td>
-        <td><?= ucfirst($value["m_postnom"]) ?></td>
-        <td><?= ucfirst($value["m_prenom"]) ?></td>
-        <td><?= number_format($value["r_montant"], 0, '.', ' ') . " CDF <br> (" .number_format(($value["r_montant"] / $taux), 2, ',', ' ') . " USD)" ?></td>
-        <td><?= $taux . " CDF" ?></td>
-        <td><?= $value["r_date"] ?></td>
-        <td>
-          <!-- cool -->
-          <a href="/liberation/update?_=<?= $value["r_code"] ?>" class="btn btn-sm btn-outline-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brush-fill" viewBox="0 0 16 16">
+  <?php if (!empty($data)) : ?>
+    <tbody>
+      <?php foreach ($data as $key => $value) : ?>
+        <tr>
+          <td><?= ucfirst($value["m_nom"]) ?></td>
+          <td><?= ucfirst($value["m_postnom"]) ?></td>
+          <td><?= ucfirst($value["m_prenom"]) ?></td>
+          <td><?= number_format($value["r_montant"], 0, '.', ' ') . " CDF <br> (" . number_format(($value["r_montant"] / $taux), 2, ',', ' ') . " USD)" ?></td>
+          <td><?= $taux . " CDF" ?></td>
+          <td><?= $value["r_date"] ?></td>
+          <td>
+            <!-- cool -->
+            <form action="/print" method="post" target="_blank">
+              <input type="hidden" name="display" value="portrait">
+              <input type="hidden" name="table" value="liberation">
+              <input type="hidden" name="nom" value="<?= ucfirst($value["m_nom"]) ?>">
+              <input type="hidden" name="postnom" value="<?= ucfirst($value["m_postnom"]) ?>">
+              <input type="hidden" name="prenom" value="<?= ucfirst($value["m_prenom"]) ?>">
+              <input type="hidden" name="_" value="<?= $value["r_code_membre"] ?>">
+              <button type="submit" class="btn btn-sm btn-outline-primary">Imprimer <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                </svg>
+              </button>
+            </form>
+            <!-- cool -->
+            <a href="/liberation/update?_=<?= $value["r_code"] ?>" class="btn btn-sm btn-outline-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brush-fill" viewBox="0 0 16 16">
                 <path d="M15.825.12a.5.5 0 0 1 .132.584c-1.53 3.43-4.743 8.17-7.095 10.64a6.067 6.067 0 0 1-2.373 1.534c-.018.227-.06.538-.16.868-.201.659-.667 1.479-1.708 1.74a8.118 8.118 0 0 1-3.078.132 3.659 3.659 0 0 1-.562-.135 1.382 1.382 0 0 1-.466-.247.714.714 0 0 1-.204-.288.622.622 0 0 1 .004-.443c.095-.245.316-.38.461-.452.394-.197.625-.453.867-.826.095-.144.184-.297.287-.472l.117-.198c.151-.255.326-.54.546-.848.528-.739 1.201-.925 1.746-.896.126.007.243.025.348.048.062-.172.142-.38.238-.608.261-.619.658-1.419 1.187-2.069 2.176-2.67 6.18-6.206 9.117-8.104a.5.5 0 0 1 .596.04z" />
               </svg>Update</a>
 
-          <!-- cool -->
-          <form action="/liberation/delete" method="post">
-            <input type="hidden" name="_" value="<?= $value["r_code"] ?>">
-            <button type="submit" class="btn btn-sm btn-outline-danger">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="maroon" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
-              </svg>Delete
-            </button>
-          </form>
-        </td>
-      </tr>
-    <?php endforeach ?>
-    <?php
-$lib = 0;
-foreach ($data as $k => $v) {
-$lib += (int) $v["r_montant"];
-}
-?>
+            <!-- cool -->
+            <form action="/liberation/delete" method="post">
+              <input type="hidden" name="_" value="<?= $value["r_code"] ?>">
+              <button type="submit" class="btn btn-sm btn-outline-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="maroon" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                </svg>Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+      <?php endforeach ?>
+      <?php
+      $lib = 0;
+      foreach ($data as $k => $v) {
+        $lib += (int) $v["r_montant"];
+      }
+      ?>
       <tr>
-      <th scope="col"><?= '-###-'?></th>
-      <th scope="col"><?= "TOTAUX" ?></th>
-      <th scope="col"><?= "GENERAUX" ?></th>
-      <th scope="col"><?= '-###-' ?></th>
-      <th scope="col"><?= number_format((int)$lib, 0, ',', ' ') . " CDF <br> (" . number_format(((int)$lib / $taux), 2, ',', ' ') . " USD)"; ?></th>
-      <th scope="col"><?= number_format((int) $taux, 0, ',', ' ') . " CDF" ?></th>
-      <th scope="col"><?= "-###-" ?></th>
-      <th scope="col"><?= '-###-' ?></th>
-    </tr>
-  </tbody>
+        <th scope="col"><?= "TOTAUX" ?></th>
+        <th scope="col"><?= "GENERAUX" ?></th>
+        <th scope="col"><?= '' ?></th>
+        <th scope="col"><?= number_format((int)$lib, 0, ',', ' ') . " CDF <br> (" . number_format(((int)$lib / $taux), 2, ',', ' ') . " USD)"; ?></th>
+        <th scope="col"><?= number_format((int) $taux, 0, ',', ' ') . " CDF" ?></th>
+        <th scope="col"><?= "" ?></th>
+      </tr>
+    </tbody>
 </table>
 <?php endif ?>

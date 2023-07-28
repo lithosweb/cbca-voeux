@@ -9,6 +9,10 @@ use v\model\validation\Helpers as ValidationHelpers;
 use v\model\validation\Insert;
 use v\model\validation\Update;
 
+
+/**
+ * The Base Model Class 
+ */
 class Model
 {
     public Insert $ins;

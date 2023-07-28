@@ -4,11 +4,11 @@
 
   <div class="shadow-lg p-2 mx-5 bg-body rounded">
     <label class="form-label">Nom</label>
-    <input type="text" class="form-control" name="nom" maxlength="30" placeholder="Nom">
+    <input type="text" class="form-control" name="nom" maxlength="30" placeholder="Nom" required autofocus>
 
 
     <label class="form-label">Postnom</label>
-    <input type="text" class="form-control" name="post" maxlength="30" placeholder="Post-nom">
+    <input type="text" class="form-control" name="post" maxlength="30" placeholder="Post-nom" required>
 
 
     <label class="form-label">Prenom</label>
@@ -25,6 +25,6 @@
     <input type="tel" class="form-control" placeholder="Telephone" name="tel" maxlength="20">
     <br>
 
-    <button type="submit" class="btn btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn btn-primary">Creer</button>
   </div>
 </form>

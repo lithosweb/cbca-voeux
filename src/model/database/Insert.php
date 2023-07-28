@@ -5,6 +5,9 @@ use PDO;
 use v\model\Database;
 
 
+/**
+ * All Inserts methods, This class extends the Base Database Class
+ */
 Class Insert extends Database{
 // All insert s methods
 

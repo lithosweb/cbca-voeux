@@ -44,7 +44,6 @@ if (empty($da)) {
     <label class="form-label">Telephone</label>
     <input type="text" class="form-control" placeholder="Telephone" name="tel" value="<?= $da["m_telephone"] ?>">
 
-
-  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  <button type="submit" class="btn btn-primary mt-3">Modifier</button>
 </div>
 </form>

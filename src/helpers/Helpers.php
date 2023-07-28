@@ -1,10 +1,12 @@
 <?php
-
 namespace v\helpers;
 
+
+/**
+ * Some static Helpers Methods
+ */
 class Helpers
 {
-
   public static function randStr($n)
   {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
